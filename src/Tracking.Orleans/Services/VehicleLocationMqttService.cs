@@ -8,7 +8,7 @@ using MQTTnet;
 using MQTTnet.Client;
 using Orleans;
 using Tracking.Grains;
-using Tracking.ValueObejcts;
+using Tracking.ValueObjects;
 using Volo.Abp.DependencyInjection;
 
 namespace Tracking.Services
@@ -73,7 +73,12 @@ namespace Tracking.Services
                 var vehicleId = ExtractVehicleIdFromTopic(topic);
                 var payload = System.Text.Encoding.UTF8.GetString(e.ApplicationMessage.PayloadSegment);
                 
-                var location = JsonSerializer.Deserialize<Location>(payload);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var location = JsonSerializer.Deserialize<Location>(payload, options);
+
                 if (location != null)
                 {
                     var vehicleGrain = _grainFactory.GetGrain<IVehicleGrain>(vehicleId);

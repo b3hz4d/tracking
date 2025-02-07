@@ -33,7 +33,7 @@ namespace Tracking.Services
             var entity = new Vehicle
             {
                 Name = createInput.Name,
-                Location = new ValueObejcts.Location
+                Location = new Tracking.ValueObjects.Location
                 {
                     Latitude = createInput.Location.Latitude,
                     Longitude = createInput.Location.Longitude
@@ -46,7 +46,7 @@ namespace Tracking.Services
         protected override void MapToEntity(UpdateVehicleDto updateInput, Vehicle entity)
         {
             entity.Name = updateInput.Name;
-            entity.Location = new ValueObejcts.Location
+            entity.Location = new ValueObjects.Location
             {
                 Latitude = updateInput.Location.Latitude,
                 Longitude = updateInput.Location.Longitude

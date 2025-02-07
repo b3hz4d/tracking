@@ -95,7 +95,8 @@ public class TrackingDbContext :
 
         builder.Entity<Person>(b =>
         {
-            b.OwnsOne(e => e.Location);
+            b.OwnsOne(e => e.Location)
+                .HasOne<Person>();
         });
 
         builder.Entity<Product>(b =>

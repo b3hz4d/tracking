@@ -1,0 +1,17 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+bin/
+obj/
+Tracking.DbMigrator/bin/
+Tracking.DbMigrator/obj/
+Tracking.Application/bin/
+Tracking.Application/obj/
+Tracking.Orleans/bin/
+Tracking.Orleans/obj/
+Tracking.Grains/bin/
+Tracking.Grains/obj/
+Tracking.EntityFrameworkCore/bin/
+Tracking.EntityFrameworkCore/obj/
+Tracking.Application.Contracts/bin/
+Tracking.Application.Contracts/obj/
+Tracking.Domain/bin/
+Tracking.Domain/obj/

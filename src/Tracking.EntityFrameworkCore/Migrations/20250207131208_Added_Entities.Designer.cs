@@ -1879,7 +1879,7 @@ namespace Tracking.Migrations
 
             modelBuilder.Entity("Tracking.Person", b =>
                 {
-                    b.OwnsOne("Tracking.ValueObejcts.Location", "Location", b1 =>
+                    b.OwnsOne("Tracking.ValueObjects.Location", "Location", b1 =>
                         {
                             b1.Property<Guid>("PersonId")
                                 .HasColumnType("uniqueidentifier");
@@ -1904,7 +1904,7 @@ namespace Tracking.Migrations
 
             modelBuilder.Entity("Tracking.Product", b =>
                 {
-                    b.OwnsOne("Tracking.ValueObejcts.Location", "Location", b1 =>
+                    b.OwnsOne("Tracking.ValueObjects.Location", "Location", b1 =>
                         {
                             b1.Property<Guid>("ProductId")
                                 .HasColumnType("uniqueidentifier");
@@ -1929,7 +1929,7 @@ namespace Tracking.Migrations
 
             modelBuilder.Entity("Tracking.Vehicle", b =>
                 {
-                    b.OwnsOne("Tracking.ValueObejcts.Location", "Location", b1 =>
+                    b.OwnsOne("Tracking.ValueObjects.Location", "Location", b1 =>
                         {
                             b1.Property<Guid>("VehicleId")
                                 .HasColumnType("uniqueidentifier");

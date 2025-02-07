@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Tracking.DTOs;
-using Tracking.ValueObejcts;
+using Tracking.ValueObjects;
 
 namespace Tracking;
 

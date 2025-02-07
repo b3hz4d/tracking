@@ -27,7 +27,7 @@ namespace Tracking.Services
             {
                 Name = createInput.Name,
                 ProductCode = createInput.ProductCode,
-                Location = new ValueObejcts.Location
+                Location = new ValueObjects.Location
                 {
                     Latitude = createInput.Location.Latitude,
                     Longitude = createInput.Location.Longitude
@@ -41,7 +41,7 @@ namespace Tracking.Services
         {
             entity.Name = updateInput.Name;
             entity.ProductCode = updateInput.ProductCode;
-            entity.Location = new ValueObejcts.Location
+            entity.Location = new ValueObjects.Location
             {
                 Latitude = updateInput.Location.Latitude,
                 Longitude = updateInput.Location.Longitude

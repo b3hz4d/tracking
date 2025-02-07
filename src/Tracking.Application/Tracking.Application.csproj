@@ -4,6 +4,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Tracking</RootNamespace>
   </PropertyGroup>
@@ -23,6 +24,8 @@
     <PackageReference Include="MQTTnet" Version="4.3.3.952" />
     <PackageReference Include="Microsoft.Orleans.Core" Version="9.0.1" />
     <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Orleans.Sdk" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Orleans.Serialization" Version="9.0.1" />
   </ItemGroup>
 
 </Project>
