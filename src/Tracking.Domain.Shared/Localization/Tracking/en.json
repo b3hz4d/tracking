@@ -1,9 +1,25 @@
 {
-  "culture": "en",
-  "texts": {
+  "Culture": "en",
+  "Texts": {
     "AppName": "Tracking",
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "Permission:Tracking": "Tracking",
+    "Permission:Vehicle": "Vehicle Management",
+    "Permission:Vehicle.Create": "Create Vehicle",
+    "Permission:Vehicle.Update": "Update Vehicle",
+    "Permission:Vehicle.Delete": "Delete Vehicle",
+    "Permission:Vehicle.Read": "Read Vehicle",
+    "Permission:Person": "Person Management",
+    "Permission:Person.Create": "Create Person",
+    "Permission:Person.Update": "Update Person",
+    "Permission:Person.Delete": "Delete Person",
+    "Permission:Person.Read": "Read Person",
+    "Permission:Product": "Product Management",
+    "Permission:Product.Create": "Create Product",
+    "Permission:Product.Update": "Update Product",
+    "Permission:Product.Delete": "Delete Product",
+    "Permission:Product.Read": "Read Product"
   }
 }

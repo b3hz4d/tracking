@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Tracking.DTOs;
+using Tracking.ValueObejcts;
 
 namespace Tracking;
 
@@ -6,8 +8,19 @@ public class TrackingApplicationAutoMapperProfile : Profile
 {
     public TrackingApplicationAutoMapperProfile()
     {
-        /* You can configure your AutoMapper mapping configuration here.
-         * Alternatively, you can split your mapping configurations
-         * into multiple profile classes for a better organization. */
+        CreateMap<Location, LocationDto>();
+        CreateMap<LocationDto, Location>();
+
+        CreateMap<Vehicle, VehicleDto>();
+        CreateMap<CreateVehicleDto, Vehicle>();
+        CreateMap<UpdateVehicleDto, Vehicle>();
+
+        CreateMap<Person, PersonDto>();
+        CreateMap<CreatePersonDto, Person>();
+        CreateMap<UpdatePersonDto, Person>();
+
+        CreateMap<Product, ProductDto>();
+        CreateMap<CreateProductDto, Product>();
+        CreateMap<UpdateProductDto, Product>();
     }
 }

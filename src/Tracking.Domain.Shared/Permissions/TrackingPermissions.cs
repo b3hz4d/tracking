@@ -1,4 +1,4 @@
-﻿namespace Tracking.Permissions;
+namespace Tracking;
 
 public static class TrackingPermissions
 {
@@ -30,7 +30,4 @@ public static class TrackingPermissions
         public const string Delete = Default + ".Delete";
         public const string Read = Default + ".Read";
     }
-
-    //Add your own permission names. Example:
-    //public const string MyPermission1 = GroupName + ".MyPermission1";
-}
+} 

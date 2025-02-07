@@ -20,6 +20,9 @@
     <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="9.0.3" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="9.0.3" />
     <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="9.0.3" />
+    <PackageReference Include="MQTTnet" Version="4.3.3.952" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="9.0.1" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
@@ -6,40 +5,63 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using OpenIddict.Validation.AspNetCore;
 using Tracking.EntityFrameworkCore;
 using Tracking.Localization;
 using Tracking.MultiTenancy;
-using Tracking.Web.Menus;
-using Microsoft.OpenApi.Models;
-using OpenIddict.Validation.AspNetCore;
-using Volo.Abp;
-using Volo.Abp.Account.Web;
+using System;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
+using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
+using Volo.Abp.Modularity;
+using Volo.Abp.OpenIddict;
+using Volo.Abp.SettingManagement.Web;
+using Volo.Abp.Swashbuckle;
+using Volo.Abp.TenantManagement.Web;
+using Volo.Abp.UI.Navigation;
+using Volo.Abp.UI.Navigation.Urls;
+using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Account.Web;
+using Volo.Abp.AspNetCore.Mvc.Localization;
+using Volo.Abp.AspNetCore.Mvc.UI;
+using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
+using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+using Volo.Abp.AspNetCore.Serilog;
+using Volo.Abp.Autofac;
+using Volo.Abp.AutoMapper;
+using Volo.Abp.FeatureManagement;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.Web;
 using Volo.Abp.Security.Claims;
-using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement.Web;
-using Volo.Abp.OpenIddict;
-using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
-using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Orleans;
+using Orleans.Configuration;
+using Orleans.Hosting;
+using Tracking.Web.Menus;
+using Volo.Abp;
+using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
+using Asp.Versioning.ApiExplorer;
 
 namespace Tracking.Web;
 
@@ -104,14 +126,25 @@ public class TrackingWebModule : AbpModule
         var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
 
-        ConfigureAuthentication(context);
         ConfigureUrls(configuration);
         ConfigureBundles();
+        ConfigureAuthentication(context);
         ConfigureAutoMapper();
         ConfigureVirtualFileSystem(hostingEnvironment);
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+
+        context.Services.AddApiVersioning(options =>
+        {
+            options.ReportApiVersions = true;
+            options.AssumeDefaultVersionWhenUnspecified = true;
+            options.DefaultApiVersion = new ApiVersion(1, 0);
+        }).AddApiExplorer(options =>
+        {
+            options.GroupNameFormat = "'v'VVV";
+            options.SubstituteApiVersionInUrl = true;
+        });
     }
 
     private void ConfigureAuthentication(ServiceConfigurationContext context)
@@ -120,6 +153,14 @@ public class TrackingWebModule : AbpModule
         context.Services.Configure<AbpClaimsPrincipalFactoryOptions>(options =>
         {
             options.IsDynamicClaimsEnabled = true;
+        });
+
+        // Add anonymous authentication
+        context.Services.Configure<AuthorizationOptions>(options =>
+        {
+            options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                .RequireAssertion(_ => true)
+                .Build();
         });
     }
 
